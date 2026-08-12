@@ -20,3 +20,5 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## Info Page
 This repo contains all the main data for the portswigger web security academy and this will be the landing page
+
+Link to SQl Injection
