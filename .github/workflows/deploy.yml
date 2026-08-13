@@ -28,11 +28,29 @@ jobs:
       - name: Install MkDocs
         run: pip install mkdocs mkdocs-material
 
-      - name: Build project-a
-        run: mkdocs build -f project-a/mkdocs.yml -d ../site-output/project-a
+      - name: Build SQL Injection
+        run: mkdocs build -f sql-injection/mkdocs.yml -d ../site-output/sql-injection
 
-      - name: Build project-b
-        run: mkdocs build -f project-b/mkdocs.yml -d ../site-output/project-b
+      - name: Build File Upload Vulnerabilities
+        run: mkdocs build -f file-upload-vulnerabilities/mkdocs.yml -d ../site-output/file-upload-vulnerabilities
+
+      - name: Build Race Conditions
+        run: mkdocs build -f race-conditions/mkdocs.yml -d ../site-output/race-conditions
+
+      - name: Build Path Traversal
+        run: mkdocs build -f path-traversal/mkdocs.yml -d ../site-output/path-traversal
+
+      - name: Build CORS
+        run: mkdocs build -f cors/mkdocs.yml -d ../site-output/cors
+
+      - name: Build Web LLM Attacks
+        run: mkdocs build -f web-llm-attacks/mkdocs.yml -d ../site-output/web-llm-attacks
+
+      - name: Build API Testing
+        run: mkdocs build -f api-testing/mkdocs.yml -d ../site-output/api-testing
+
+      - name: Build Server-side Vulnerabilities
+        run: mkdocs build -f server-side-vulnerabilities/mkdocs.yml -d ../site-output/server-side-vulnerabilities
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
