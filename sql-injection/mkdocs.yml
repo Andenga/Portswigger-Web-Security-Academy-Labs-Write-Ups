@@ -1,1 +1,16 @@
-site_name: My Docs
+site_name: SQL INJECTION
+
+nav: 
+  - Home: index.md
+  - Overview:
+      - SQL injection vulnerability in WHERE clause allowing retrieval of hidden data: index.md#sql-injection-vulnerability-in-where-clause-allowing-retrieval-of-hidden-data
+      - second exercise: index.md#second-exercise
+      - Third exercise: index.md#third-exercise
+      
+  - SQL Injection:
+      - Introduction: sql-injection/introduction.md
+      - Types of SQL Injection: sql-injection/types-of-sql-injection.md
+      - Prevention Techniques: sql-injection/prevention-techniques.md
+      - Tools for Testing: sql-injection/tools-for-testing.md
+
+  

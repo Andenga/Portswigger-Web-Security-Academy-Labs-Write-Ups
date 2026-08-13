@@ -1,17 +1,7 @@
-# Welcome to MkDocs
+# CORS
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+🚧 Write-up in progress.
 
-## Commands
+I'm currently working through the PortSwigger Web Security Academy labs on Cross site scripting (CORS). Check back soon, or follow the repo for updates.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+[← Back to all topics](../)
