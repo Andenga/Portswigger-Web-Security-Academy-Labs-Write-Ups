@@ -19,7 +19,6 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 # Welcome
 
-Browse the vulnerability write-ups:
 
 - [SQL Injection](sql-injection/)
 - [File Upload Vulnerabilities](file-upload-vulnerabilities/)
