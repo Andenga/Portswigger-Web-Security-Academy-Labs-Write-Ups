@@ -24,25 +24,36 @@ jobs:
 
       # Root/landing site MUST build first — mkdocs clears its
       # target folder on build, which would wipe subfolders if run later.
+      #
+      # IMPORTANT: mkdocs resolves the -d/--site-dir path relative to the
+      # LOCATION OF THE CONFIG FILE being built, not relative to the
+      # working directory the command is run from. So for subfolder
+      # configs like cors/mkdocs.yml, "-d ./site-output/cors" actually
+      # resolves to "cors/site-output/cors" — wrong. Using an absolute
+      # path built from $GITHUB_WORKSPACE avoids this entirely, for
+      # every config regardless of how deep it lives.
       - name: Build Root Site
-        run: mkdocs build -f mkdocs.yml -d ./site-output
+        run: mkdocs build -f mkdocs.yml -d "$GITHUB_WORKSPACE/site-output"
 
       - name: Build SQL Injection
-        run: mkdocs build -f sql-injection/mkdocs.yml -d ./site-output/sql-injection
+        run: mkdocs build -f sql-injection/mkdocs.yml -d "$GITHUB_WORKSPACE/site-output/sql-injection"
       - name: Build File Upload Vulnerabilities
-        run: mkdocs build -f file-upload-vulnerabilities/mkdocs.yml -d ./site-output/file-upload-vulnerabilities
+        run: mkdocs build -f file-upload-vulnerabilities/mkdocs.yml -d "$GITHUB_WORKSPACE/site-output/file-upload-vulnerabilities"
       - name: Build Race Conditions
-        run: mkdocs build -f race-conditions/mkdocs.yml -d ./site-output/race-conditions
+        run: mkdocs build -f race-conditions/mkdocs.yml -d "$GITHUB_WORKSPACE/site-output/race-conditions"
       - name: Build Path Traversal
-        run: mkdocs build -f path-traversal/mkdocs.yml -d ./site-output/path-traversal
+        run: mkdocs build -f path-traversal/mkdocs.yml -d "$GITHUB_WORKSPACE/site-output/path-traversal"
       - name: Build CORS
-        run: mkdocs build -f cors/mkdocs.yml -d ./site-output/cors
+        run: mkdocs build -f cors/mkdocs.yml -d "$GITHUB_WORKSPACE/site-output/cors"
       - name: Build Web LLM Attacks
-        run: mkdocs build -f web-llm-attacks/mkdocs.yml -d ./site-output/web-llm-attacks
+        run: mkdocs build -f web-llm-attacks/mkdocs.yml -d "$GITHUB_WORKSPACE/site-output/web-llm-attacks"
       - name: Build API Testing
-        run: mkdocs build -f api-testing/mkdocs.yml -d ./site-output/api-testing
+        run: mkdocs build -f api-testing/mkdocs.yml -d "$GITHUB_WORKSPACE/site-output/api-testing"
       - name: Build Server-side Vulnerabilities
-        run: mkdocs build -f server-side-vulnerabilities/mkdocs.yml -d ./site-output/server-side-vulnerabilities
+        run: mkdocs build -f server-side-vulnerabilities/mkdocs.yml -d "$GITHUB_WORKSPACE/site-output/server-side-vulnerabilities"
+
+      - name: Debug - inspect site-output
+        run: find "$GITHUB_WORKSPACE/site-output" -maxdepth 2
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
