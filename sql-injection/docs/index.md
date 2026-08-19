@@ -1,6 +1,6 @@
 # SQL INJECTION
 
-## SQL injection vulnerability in WHERE clause allowing retrieval of hidden data
+## 1. SQL injection vulnerability in WHERE clause allowing retrieval of hidden data
 
 Difficulty : Apprentice
 
@@ -47,93 +47,77 @@ This solves the challenge because it displays all products including the unrelea
 ![alt text](Images/image-3.png)
 
 
-## second exercise
+## 2. SQL injection vulnerability allowing login bypass
 
-oskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjns
-oskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjns
-oskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjns
 
-## Third exercise
-oskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjnsoskdmcskdmcpsldc
-sdcknsodkcnspw
-sljdcnsokdnfc
-sdcjns
+### Lab Objective
+This lab contains a SQL injection vulnerability in the login function.
 
+To solve the lab, perform a SQL injection attack that logs in to the application as the administrator user.
+
+
+### Solution
+Normally, when an application asks you to log in and insert your user name and password, it check the credentials by performing this SQL query
+
+SELECT * FROM users WHERE username = 'wiener' AND password = 'bluecheese'
+
+But if a user can find a way of not having the password checked and only the username is checked they will be able to login. This can be done by commenting out the password section of the query.
+
+I am going to use Burpsuite community edition for this task as I did in the first lab.
+
+
+I will start by sending the login page to the repeater from th eproxy page
+
+![alt text](image.png)
+
+The raw code rendedred did not show me the username and password section of the page, the trick here its to try and login using an incorrect password with ht eadministrator username so that you can be able to see it on the Burpsuitee's side.
+
+You will see a similiar line of code at the bottom of the page 
+
+csrf=0LiALJSmPVUypAFxlyDfkN2rVoWE6aiz&username=administrator&password=12345
+
+Here, we are going to comment out the password section so that we can login using only the username by using the below code.
+
+
+
+
+### Rough notes
+
+Imagine an application that lets users log in with a username and password. If a user submits the username wiener and the password bluecheese, the application checks the credentials by performing the following SQL query:
+
+SELECT * FROM users WHERE username = 'wiener' AND password = 'bluecheese'
+
+In this case, an attacker can log in as any user without the need for a password. They can do this using the SQL comment sequence -- to remove the password check from the WHERE clause of the query. For example, submitting the username administrator'-- and a blank password results in the following query:
+
+SELECT * FROM users WHERE username = 'administrator'--' AND password = ''
+This query returns the user whose username is administrator and successfully logs the attacker in as that user.
+
+
+
+
+
+
+### Lab Objective
+
+### Solution
+
+
+
+
+### Lab Objective
+
+### Solution
+
+
+
+
+### Lab Objective
+
+### Solution
+
+
+
+
+### Lab Objective
+
+### Solution
